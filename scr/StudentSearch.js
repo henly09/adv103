@@ -87,8 +87,8 @@ export default class StudentSearch extends Component {
          <Image 
          source= {hcdclogo}
          style={{ 
-         height: 180,
-         width: 180,
+         height: 120,
+         width: 120,
          position: 'absolute',
          alignSelf:'center',
          top: 100,
@@ -154,7 +154,7 @@ const styles=StyleSheet.create({
         flex:1,
         padding:20,
         marginTop:20,
-        top: '35%',
+        top: '25%',
         
     },
 

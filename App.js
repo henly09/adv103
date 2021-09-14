@@ -6,6 +6,7 @@ import * as React from 'react';
 import { View, Text, Button, Image, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ModalDropdown from 'react-native-modal-dropdown';
 
 import StudentInsert from './scr/StudentInsert.js';
@@ -15,6 +16,11 @@ import StudentList from './scr/StudentList.js';
 import dash from './assets/dash.png';
 import hcdclogo from './assets/hcdclogo.png';
 import school from './assets/school.png';
+import home from './assets/home.png';
+import insert from './assets/insert.png';
+import search from './assets/search.png';
+import deleted from './assets/delete.png';
+import list from './assets/list.png';
 
 
 function HomeScreen({ navigation }) {
@@ -150,53 +156,110 @@ function HomeScreen({ navigation }) {
 }
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
+      <Tab.Navigator
+    initialRouteName="Home"
+      screenOptions={{
+        tabBarStyle: { 
+          position: 'absolute',
+          backgroundColor: '#008ce0',
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
+          height: 60,
+          width: "100%"
+        },
+        tabBarShowLabel: false,
+        showElevation: true
+      }}>
 
-      <Stack.Screen 
-        name="HomeScreen" 
-        component={HomeScreen}
-        options = {{
-            headerShown: false
-        }}
-        />
+      <Tab.Screen name="HomeScreen" 
+      component={HomeScreen}  
+      options = {{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                source={home}
+                resizeMode='contain'
+                style={{
+                  width:25,
+                  height:25,
+                }}
+                />
+              </View>
+            ),
+        }} />
 
-        <Stack.Screen 
-        name="Delete" 
-        component={StudentDelete}
-        options = {{
-            headerShown: false
-        }}
-        />
+      <Tab.Screen name="Insert" component={StudentInsert}  options = {{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                source={insert}
+                resizeMode='contain'
+                style={{
+                  width:25,
+                  height:25,
+                }}
+                />
+              </View>
+            ),
+        }}/>
 
-         <Stack.Screen 
-        name="Search" 
-        component={StudentSearch}
-        options = {{
-            headerShown: false
-        }}
-        />
+      <Tab.Screen name="Search" component={StudentSearch}  options = {{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                source={search}
+                resizeMode='contain'
+                style={{
+                  width:25,
+                  height:25,
+                }}
+                />
+              </View>
+            ),
+        }}/>
+      <Tab.Screen name="Delete" component={StudentDelete}  options = {{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <View>
+                <Image
+                source={deleted}
+                resizeMode='contain'
+                style={{
+                  width:25,
+                  height:25,
+                }}
+                />
+              </View>
+            ),
+        }}/>
 
-         <Stack.Screen 
-        name="Insert" 
-        component={StudentInsert}
-        options = {{
-            headerShown: false
-        }}
-        />
-
-        <Stack.Screen 
-        name="StudentList" 
-        component={StudentList}
-        options = {{
-            headerShown: false
-        }}
-        />
+    
+      <Tab.Screen name="StudentList" component={StudentList}  options = {{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (    
+              <View>
+                <Image
+                source={list}
+                resizeMode='contain'
+                style={{
+                  width:25,
+                  height:25,
+                }}
+                />
+              </View>
+            ),
+              
+        }}/>
         
-      </Stack.Navigator>
+    </Tab.Navigator>
     </NavigationContainer>
     
   );
