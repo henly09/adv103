@@ -133,7 +133,7 @@ componentDidMount = async() => {
             />
             <SafeAreaView style={styles.container}>     
                    <FlatList
-                      style={{padding: 10}}
+
                       data={ this.state.dataSource }       
                       renderItem={this._renderItem}
                       keyExtractor={(item, index) => index.toString()}
@@ -163,29 +163,32 @@ const styles=StyleSheet.create({
         borderBottomColor:'black',
         marginBottom: 30,
         backgroundColor: 'white',
-        padding: 10
+        padding: 10,
     },
       
     container :{
         alignItems:'center',
-        backgroundColor: '#F5FCFF',
-        marginTop: 10,
-        paddingTop: 10,
+        backgroundColor: 'white',
+        textAlign: 'center',
         top: 5,
-        paddingBottom: 10,
+        padding: 10,
         textAlign: 'center',
         height: 500,
-        width: '100%'
+        width: '100%',
         },
 
     item:{
-            paddingBottom: 10,
-            borderBottomWidth:2,
+            paddingBottom: 5,
+            borderBottomWidth:1,
             borderBottomColor: '#eee',
         },
 
     text:{
-            fontSize: 15
+            fontSize: 15,
+            color: 'black',
+            fontFamily: 'sans-serif',
+            fontWeight: 'bold',
+            fontStyle: "italic",
         }
 
 

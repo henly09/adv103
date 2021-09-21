@@ -21,6 +21,7 @@ import insert from './assets/insert.png';
 import search from './assets/search.png';
 import deleted from './assets/delete.png';
 import list from './assets/list.png';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 function HomeScreen({ navigation }) {
@@ -194,9 +195,11 @@ export default function App() {
             ),
         }} />
 
+
       <Tab.Screen name="Insert" component={StudentInsert}  options = {{
             headerShown: false,
             tabBarIcon: ({focused}) => (
+               
               <View>
                 <Image
                 source={insert}
@@ -209,6 +212,7 @@ export default function App() {
               </View>
             ),
         }}/>
+
 
       <Tab.Screen name="Search" component={StudentSearch}  options = {{
             headerShown: false,

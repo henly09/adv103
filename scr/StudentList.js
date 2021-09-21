@@ -98,7 +98,6 @@ export default class StudentList extends Component {
       }}> DATABASE </Text>
                 <View style={styles.container}>     
                        <FlatList
-                          style={{padding: 5}}
                           data={ this.state.dataSource }         
                           renderItem={this._renderItem}
                           keyExtractor={(item, index) => index.toString()}
@@ -116,7 +115,7 @@ export default class StudentList extends Component {
                  
                   container :{
                     alignItems:'center',
-                    backgroundColor: '#F5FCFF',
+                    backgroundColor: 'white',
                     textAlign: 'center',
                     top:180,
                     height: '68%',
@@ -127,12 +126,16 @@ export default class StudentList extends Component {
                     },
                    
                 item:{
-                  paddingBottom: 10,
-                  borderBottomWidth:2,
+                  paddingBottom: 5,
+                  borderBottomWidth:1,
                   borderBottomColor: '#eee',
                     },
                     
                 text:{
-                        fontSize: 15
+                        fontSize: 15,
+                        color: "black",
+                        fontFamily: 'sans-serif',
+                        fontWeight: 'bold',
+                        fontStyle: "italic",
                     }
                 });
