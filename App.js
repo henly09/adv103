@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { View, Text, Button, Image, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+//import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ModalDropdown from 'react-native-modal-dropdown';
 
@@ -21,11 +21,9 @@ import insert from './assets/insert.png';
 import search from './assets/search.png';
 import deleted from './assets/delete.png';
 import list from './assets/list.png';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 function HomeScreen({ navigation }) {
-
 
   const pages = ['Insert', 'Search','Delete', 'StudentList'];
 
@@ -156,7 +154,7 @@ function HomeScreen({ navigation }) {
   );
 }
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -199,7 +197,7 @@ export default function App() {
       <Tab.Screen name="Insert" component={StudentInsert}  options = {{
             headerShown: false,
             tabBarIcon: ({focused}) => (
-               
+              
               <View>
                 <Image
                 source={insert}

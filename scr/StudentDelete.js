@@ -127,10 +127,18 @@ componentDidMount = async() => {
                 style={styles.txtStyle}
                 onChangeText={StudentID=>this.setState({StudentID})}
             />
+
+    <View style= {{ flexDirection: 'row', justifyContent: 'space-evenly'}}>
             <Button
                 title={"Delete Record"}
                 onPress={() => this.DeleteRecord()}
             />
+             <Button
+                title={"Refresh"}
+                onPress={() => this.componentDidMount()}
+            />
+        </View>
+
             <SafeAreaView style={styles.container}>     
                    <FlatList
 
@@ -152,17 +160,15 @@ const styles=StyleSheet.create({
     viewStyle:
     {
         padding:20,
-        marginTop:100,
-        marginBottom: 130,
-        top: '-4%',
+        top: '10%',
     },
 
     txtStyle:
     {
         borderBottomWidth:1,
         borderBottomColor:'black',
-        marginBottom: 30,
         backgroundColor: 'white',
+        marginBottom :10,
         padding: 10,
     },
       
@@ -170,10 +176,10 @@ const styles=StyleSheet.create({
         alignItems:'center',
         backgroundColor: 'white',
         textAlign: 'center',
-        top: 5,
+        top: 10,
         padding: 10,
         textAlign: 'center',
-        height: 500,
+        height: 480,
         width: '100%',
         },
 

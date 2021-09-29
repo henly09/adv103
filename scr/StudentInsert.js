@@ -224,7 +224,7 @@ export default class StudentInsert extends Component
         dropdownStyle={{
           height: 100,
           width: '90%',
-          marginTop: -45,
+          marginTop: -48,
           marginLeft: -15,
           paddingLeft: 5
         }}
@@ -280,7 +280,7 @@ export default class StudentInsert extends Component
         dropdownStyle={{
           height: 250,
           width: '90%',
-          marginTop: -45,
+          marginTop: 223,
           marginLeft: -15,
           paddingLeft: 5
         }}
