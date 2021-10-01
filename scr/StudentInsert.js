@@ -271,7 +271,7 @@ export default class StudentInsert extends Component
             "Bachelor of Secondary Education Major in Social Studies(BSE(SS))", 
             "Bachelor of Secondary Education Major in Values Education with Catechetics(BSE(ValEd/wC))",
             "Bachelor of Special Needs Education Generalist(BSNEG)"]}
-        defaultValue={"Student's Course"}
+        defaultValue={"Student's Course                                                      V"}
         textStyle={{
            fontSize: 15
         }}

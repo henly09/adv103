@@ -13,6 +13,8 @@ import StudentInsert from './scr/StudentInsert.js';
 import StudentSearch from './scr/StudentSearch.js';
 import StudentDelete from './scr/StudentDelete.js';
 import StudentList from './scr/StudentList.js';
+import StudentCourses from './scr/StudentCourses.js';
+
 import dash from './assets/dash.png';
 import hcdclogo from './assets/hcdclogo.png';
 import school from './assets/school.png';
@@ -21,11 +23,12 @@ import insert from './assets/insert.png';
 import search from './assets/search.png';
 import deleted from './assets/delete.png';
 import list from './assets/list.png';
+import about from './assets/about.png';
 
 
 function HomeScreen({ navigation }) {
 
-  const pages = ['Insert', 'Search','Delete', 'StudentList'];
+  const pages = ['Insert', 'Search','Delete', 'StudentList', 'Courses'];
 
   return (
     <View>
@@ -45,7 +48,7 @@ function HomeScreen({ navigation }) {
         right: 10,
         position: 'relative',
       }}
-        options={['Insert', 'Search','Delete', 'Student List']}
+        options={['Insert', 'Search','Delete', 'Student List', 'Courses']}
         animated
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
@@ -129,7 +132,11 @@ function HomeScreen({ navigation }) {
       <Button
         title={"Insert"}
         onPress={() => navigation.navigate('Insert')}
-       
+      />
+
+      <Button
+        title={"Courses"}
+        onPress={() => navigation.navigate('Courses')}
       />
 
       <Button
@@ -144,7 +151,7 @@ function HomeScreen({ navigation }) {
       />
 
       <Button
-        title={"Student List"}
+        title={"List"}
         onPress={() => navigation.navigate('StudentList')}
       />
 
@@ -211,6 +218,22 @@ export default function App() {
             ),
         }}/>
 
+<Tab.Screen name="Courses" component={StudentCourses}  options = {{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (    
+              <View>
+                <Image
+                source={about}
+                resizeMode='contain'
+                style={{
+                  width:25,
+                  height:25,
+                }}
+                />
+              </View>
+            ),
+              
+        }}/>
 
       <Tab.Screen name="Search" component={StudentSearch}  options = {{
             headerShown: false,
