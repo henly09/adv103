@@ -87,11 +87,11 @@ export default class StudentSearch extends Component {
          <Image 
          source= {hcdclogo}
          style={{ 
-         height: 120,
-         width: 120,
+         height: 160,
+         width: 160,
          position: 'absolute',
          alignSelf:'center',
-         top: 100,
+         top: 65,
          resizeMode: 'center',
          }}/>
 

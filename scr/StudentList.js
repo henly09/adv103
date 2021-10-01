@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import school from '../assets/school.png';
-import { Image,StyleSheet, FlatList, Text, View, ActivityIndicator, TouchableOpacity, ImageBackground} from 'react-native';
+import { Image,Button,StyleSheet, FlatList, Text, View, ActivityIndicator, TouchableOpacity, ImageBackground} from 'react-native';
 import hcdclogo from '../assets/hcdclogo.png';
 // Ownded and Created by : Montera, John Henly A.
 // FB: fb.com/mhax.ter
 // Gmail: monterahens@gmail.com 
+
+import busman from '../assets/thumbnails/busman.png';
+import cetso from '../assets/thumbnails/cetso.png'; 
+import crim from '../assets/thumbnails/crim.png'; 
+import educ from '../assets/thumbnails/educ.png'; 
+import hotouman from '../assets/thumbnails/hotouman.png'; 
+import husocom from '../assets/thumbnails/husocom.png'; 
+import maritime from '../assets/thumbnails/maritime.png'; 
+
 export default class StudentList extends Component {
 
     constructor()
@@ -27,14 +36,75 @@ export default class StudentList extends Component {
           });
       }
     
-     _renderItem = ({ item }) => (
-         
+     _renderItem = ({ item }) => {
+
+      thumbnail = item.student_course;
+     
+      const dept = [
+       busman,
+       cetso,
+       crim,
+       educ,
+       hotouman,
+       husocom,
+       maritime];
+     
+     var e;
+     var thumbnail;
+     
+     if ( thumbnail == 'Bachelor of Science in Criminology(BSC)'){e=2;}
+
+     if ( 
+     thumbnail == 'Bachelor of Library and Information Science(BLIS)'|| 
+     thumbnail == 'Bachelor of Science in Computer Engineering(BSCE)'||
+     thumbnail == 'Bachelor of Science in Electronics Engineering(BSEE)'||
+     thumbnail == 'Bachelor of Science in Information Technology(BSIT)'){e=1;}
+
+     if ( 
+     thumbnail == 'Bachelor of Science in Hospitality Management(BSHM)'||
+     thumbnail == 'Bachelor of Science in Tourism Management(BSTM)'){e=4;}
+
+     if ( 
+     thumbnail == 'Bachelor of Arts in Communication Specializing in Journalism and Broadcasting(BACS(JB))'||
+     thumbnail == 'Bachelor of Arts in Communication Specializing in New Media Studies(BACS(NMS))'||
+     thumbnail == 'Bachelor of Arts in Communication Specializing in Social Communications(BACS(SC))'||
+     thumbnail == 'Bachelor of Arts in Economics(BAE)'||
+     thumbnail == 'Bachelor of Arts in History(BAP)'||
+     thumbnail == 'Bachelor of Arts in Philosophy(BSP)'||
+     thumbnail == 'Bachelor of Science in Psychology(BSSW)'){e=5;}
+
+     if ( thumbnail == 'Bachelor of Science in Marine Transportation(BSMT)'){e=6;}
+
+     if ( 
+      thumbnail == 'Bachelor of Science in Accountancy(BSA)'||
+      thumbnail == 'Bachelor of Science in Business Administration Major in Financial Management(BSBA(FM))'||
+      thumbnail == 'Bachelor of Science in Business Administration Major in Human Resource Management(BSBA(HRM))'||
+      thumbnail == 'Bachelor of Science in Business Administration Major in Marketing Management(BSBA(MM))'||
+      thumbnail == 'Bachelor of Science in Customs Administration(BSCA)'||
+      thumbnail == 'Bachelor of Science in Management Accounting(BSMA)'||
+      thumbnail == 'Bachelor of Science in Real Estate Management(BSREM)'){e=0;}
+
+      if ( 
+        thumbnail == 'Bachelor of Elementary Education(BEE)'||
+        thumbnail == 'Bachelor of Physical Education(BPE)'||
+        thumbnail == 'Bachelor of Secondary Education Major in English(BSE(E))'||
+        thumbnail == 'Bachelor of Secondary Education Major in Filipino(BSE(F))'||
+        thumbnail == 'Bachelor of Secondary Education Major in Mathematics(BSE(M))'||
+        thumbnail == 'Bachelor of Secondary Education Major in Science(BSE(S))'||
+        thumbnail == 'Bachelor of Secondary Education Major in Social Studies(BSE(SS))'||
+        thumbnail == 'Bachelor of Secondary Education Major in Values Education with Catechetics(BSE(ValEd/wC))'||
+        thumbnail == 'Bachelor of Special Needs Education Generalist(BSNEG)'){e=3;}
+
+      return(
         <TouchableOpacity onPress={() => alert(item.body)}>
+          <View>
             <View style={styles.item}>
-                <Text style={styles.text}>ID#:{item.StudentID}, Name:{item.student_name}, Course:{item.student_course}</Text>
+                <Text style={styles.text}>StudentID#:{item.StudentID}, Name:{item.student_name}, {'\n'}Course:{item.student_course}</Text>
             </View>
+          <Image style= {styles.thumbnail}source={dept[e]}/>
+          </View>
         </TouchableOpacity>
-     );
+     );}
 
         render() {
  
@@ -49,13 +119,10 @@ export default class StudentList extends Component {
      
             return (
               <View>
-                <ImageBackground 
-                source={school} 
-                resizeMode="cover" 
-                style={{
-                height: '100%',
-                width: '100%'
-                }}>
+                        <ImageBackground
+                   opacity={0.5}
+                   style={styles.imagebackground}
+                   source={school}/>
 
           <Image 
          source= {hcdclogo}
@@ -98,12 +165,26 @@ export default class StudentList extends Component {
       }}> DATABASE </Text>
                 <View style={styles.container}>     
                        <FlatList
+                          style={{padding: 5, width: '100%'}}
                           data={ this.state.dataSource }         
                           renderItem={this._renderItem}
                           keyExtractor={(item, index) => index.toString()}
                         />                
                 </View>
-                </ImageBackground>
+                <View style={{
+  width: 100,
+  height: 50,
+  position: 'absolute',
+  top: 670,
+  left: 150,
+}}>
+      <Button
+        title={"Refresh"}
+        onPress={() => this.componentDidMount()}
+      />
+      
+</View>
+
                 </View>
                             
                     );
@@ -115,27 +196,43 @@ export default class StudentList extends Component {
                  
                   container :{
                     alignItems:'center',
-                    backgroundColor: 'white',
+                    backgroundColor: '#F5FCFF',
                     textAlign: 'center',
                     top:180,
-                    height: '68%',
+                    height: '78%',
                     width: '90%',
                     left: '5%',
-                    padding: 20
+                    padding: 10
 
                     },
                    
                 item:{
-                  paddingBottom: 5,
-                  borderBottomWidth:1,
+                  borderBottomWidth:3,
                   borderBottomColor: '#eee',
+                  width: '90%',
+                  padding :10,
+                  left: 50
                     },
                     
                 text:{
-                        fontSize: 15,
-                        color: "black",
-                        fontFamily: 'sans-serif',
-                        fontWeight: 'bold',
-                        fontStyle: "italic",
-                    }
+                  fontSize: 15,
+                  fontFamily: 'sans-serif',
+                  fontWeight: 'bold',
+                  fontStyle: "italic",
+                    },
+
+                thumbnail:{
+                      resizeMode: 'center',
+                      position: 'absolute',
+                      height: 50, 
+                      width: 50, 
+                      top: 20,
+                      backgroundColor:'#630513',
+                   },
+                   imagebackground: {
+                    height: 755,
+                    width: 500,
+                    backgroundColor: 'black',
+                    position: 'absolute',
+                  },
                 });

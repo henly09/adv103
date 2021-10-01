@@ -215,7 +215,7 @@ export default class StudentInsert extends Component
     <ModalDropdown 
         style={styles.txtStyle}
         options={["1st Year", "2nd Year", "3rd Year", "4th Year", "5th Year"]}
-        defaultValue={"Student's Year"}
+        defaultValue={"Student's Year                                                           V"}
         textStyle={{
            fontSize: 15
         }}
