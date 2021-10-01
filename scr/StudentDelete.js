@@ -268,7 +268,7 @@ const styles=StyleSheet.create({
             position: 'absolute',
             height: 50, 
             width: 50, 
-            top: 20,
+            top: 15,
             backgroundColor:'#630513'
     },
     imagebackground: {
