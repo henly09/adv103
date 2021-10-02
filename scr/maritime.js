@@ -43,12 +43,6 @@ export default function maritimeScreen() {
      <Image
      style={styles.imagebgsecond}
      source={maritime}/>
-     <Text
-     style={styles.textimagebgsecond} 
-     >Single Room</Text>
-    <Text
-     style={styles.textimagebgsecondonepointtwo} 
-     > $30.00 /per night</Text>
      <Text style={styles.textimagebgsecond2}>
      Bachelor of Science in Marine Transportation
     </Text>
