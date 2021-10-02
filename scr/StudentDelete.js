@@ -34,7 +34,8 @@ export default class StudentDelete extends Component {
         }
         this.state = { 
             isLoading: true,
-            dataSource:[]
+            dataSource:[],
+            isFetching:false
           }
     }
 
@@ -95,6 +96,11 @@ componentDidMount = async() => {
         this.setState({ isLoading: false });
     }
   }
+
+  onRefresh() {
+    this.setState({isFetching: true,},() => {this.componentDidMount();});
+    this.setState({ isFetching: false })
+}
 
  _renderItem = ({ item }) => {
      
@@ -184,31 +190,30 @@ componentDidMount = async() => {
                    opacity={0.5}
                    style={styles.imagebackground}
                    source={school}/>
-                    
+        
         <View style={styles.viewStyle}>
+
+        <View style= {{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
             <TextInput
                 placeholder={"Enter Student ID#"}
                 placeholderTextColor={"#000000"}
                 keyboardType={"numeric"}
-                style={styles.txtStyle}
+                style={styles.txtStyle3}
                 onChangeText={StudentID=>this.setState({StudentID})}
             />
 
-    <View style= {{ flexDirection: 'row', justifyContent: 'space-evenly'}}>
-            <Button
-                title={"Delete Record"}
-                onPress={() => this.DeleteRecord()}
-            />
-             <Button
-                title={"Refresh"}
-                onPress={() => this.componentDidMount()}
-            />
-        </View>
+    <TouchableOpacity
+                    onPress={() => this.DeleteRecord()}>
+                    <Text style={styles.button}>DELETE</Text>
+    </TouchableOpacity>
+    </View>
 
             <SafeAreaView style={styles.container}>     
                    <FlatList
                       style={{padding: 10, width: '100%'}}
-                      data={ this.state.dataSource }       
+                      data={ this.state.dataSource }
+                      onRefresh={() => this.onRefresh()}
+                      refreshing={this.state.isFetching}        
                       renderItem={this._renderItem}
                       keyExtractor={(item, index) => index.toString()}
                     />                
@@ -225,7 +230,7 @@ const styles=StyleSheet.create({
     viewStyle:
     {
         padding:20,
-        top: '10%',
+        top: '13%',
     },
 
     txtStyle:
@@ -277,6 +282,28 @@ const styles=StyleSheet.create({
         backgroundColor: 'black',
         position: 'absolute',
       },
+    txtStyle3:{
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
+        padding: 10,
+        marginBottom: 10,
+        backgroundColor: 'white',
+        width: 245,
+        marginRight: 5
+    },
+    button:{
+        borderBottomWidth: 1,
+        borderBottomColor: 'black',
+        width: 100,
+        backgroundColor: '#048ce4',
+        fontSize: 14,
+        height: 48,
+        textAlign: 'center',
+        color: 'white',
+        fontWeight: 'bold',
+        borderRadius: 3,
+        paddingTop:14
+    },
 
 
 

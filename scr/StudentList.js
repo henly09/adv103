@@ -21,7 +21,8 @@ export default class StudentList extends Component {
       super();
       this.state = { 
       isLoading: true,
-      dataSource:[]
+      dataSource:[],
+      isFetching:false
     }
     }
 
@@ -35,6 +36,11 @@ export default class StudentList extends Component {
             })  
           });
       }
+
+      onRefresh() {
+        this.setState({isFetching: true,},() => {this.componentDidMount();});
+        this.setState({ isFetching: false })
+    }
     
      _renderItem = ({ item }) => {
 
@@ -166,7 +172,9 @@ export default class StudentList extends Component {
                 <View style={styles.container}>     
                        <FlatList
                           style={{padding: 5, width: '100%'}}
-                          data={ this.state.dataSource }         
+                          data={ this.state.dataSource }  
+                          onRefresh={() => this.onRefresh()}
+                          refreshing={this.state.isFetching}         
                           renderItem={this._renderItem}
                           keyExtractor={(item, index) => index.toString()}
                         />                
@@ -178,10 +186,7 @@ export default class StudentList extends Component {
   top: 670,
   left: 150,
 }}>
-      <Button
-        title={"Refresh"}
-        onPress={() => this.componentDidMount()}
-      />
+
       
 </View>
 
@@ -199,7 +204,7 @@ export default class StudentList extends Component {
                     backgroundColor: '#F5FCFF',
                     textAlign: 'center',
                     top:180,
-                    height: '78%',
+                    height: '82%',
                     width: '90%',
                     left: '5%',
                     padding: 10
