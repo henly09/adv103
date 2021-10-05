@@ -105,7 +105,7 @@ export default class StudentList extends Component {
         <TouchableOpacity onPress={() => alert(item.body)}>
           <View>
             <View style={styles.item}>
-                <Text style={styles.text}>StudentID#:{item.StudentID}, Name:{item.student_name}, {'\n'}Course:{item.student_course}</Text>
+                <Text style={styles.text}>StudentID#:{item.StudentID}{'\n'}Name:{item.student_name}{'\n'}Course:{item.student_course}</Text>
             </View>
           <Image style= {styles.thumbnail}source={dept[e]}/>
           </View>
@@ -171,7 +171,7 @@ export default class StudentList extends Component {
       }}> DATABASE </Text>
                 <View style={styles.container}>     
                        <FlatList
-                          style={{padding: 5, width: '100%'}}
+                          style={{paddingLeft: 10, width: '100%'}}
                           data={ this.state.dataSource }  
                           onRefresh={() => this.onRefresh()}
                           refreshing={this.state.isFetching}         
@@ -207,8 +207,6 @@ export default class StudentList extends Component {
                     height: '82%',
                     width: '90%',
                     left: '5%',
-                    padding: 10
-
                     },
                    
                 item:{
@@ -216,7 +214,7 @@ export default class StudentList extends Component {
                   borderBottomColor: '#eee',
                   width: '90%',
                   padding :10,
-                  left: 50
+                  left: 65
                     },
                     
                 text:{
@@ -229,9 +227,10 @@ export default class StudentList extends Component {
                 thumbnail:{
                       resizeMode: 'center',
                       position: 'absolute',
-                      height: 50, 
-                      width: 50, 
-                      top: 15,
+                      height: 55, 
+                      width: 55, 
+                      top: 20,
+                      left: 10,
                       backgroundColor:'#630513',
                    },
                    imagebackground: {

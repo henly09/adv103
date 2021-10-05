@@ -13,6 +13,7 @@ import {
     ImageBackground,
     Image
 } from 'react-native';
+import hcdclogo from '../assets/hcdclogo.png';
 import school from '../assets/school.png';
 import busman from '../assets/thumbnails/busman.png';
 import cetso from '../assets/thumbnails/cetso.png'; 
@@ -191,6 +192,45 @@ componentDidMount = async() => {
                    style={styles.imagebackground}
                    source={school}/>
         
+        <Image 
+         source= {hcdclogo}
+         style={{ 
+         height: 95,
+         width: 95,
+         position: 'absolute',
+         alignSelf:'flex-end',
+         right: 30,
+         top: 40,
+         resizeMode: 'center',
+         }}/>
+
+                <Text style={{
+        fontSize: 50,
+        fontFamily: 'sans-serif',
+        fontWeight: 'bold',
+        fontStyle: "italic",
+        position: 'absolute',
+        top: 45,
+        left: 6.5,
+        color: 'white',
+        textShadowColor:'#0c0d0e',
+        textShadowOffset:{width: 10, height: 10},
+        textShadowRadius:20,
+      }}> STUDENT </Text>         
+
+        <Text style={{
+        fontSize: 30,
+        fontFamily: 'sans-serif',
+        fontWeight: 'bold',
+        fontStyle: "italic",
+        position: 'absolute',
+        top: 100,
+        left: 10,
+        color: 'white',
+        textShadowColor:'#0c0d0e',
+        textShadowOffset:{width: 10, height: 10},
+        textShadowRadius:20,
+      }}> SEARCH SYSTEM </Text>
         <View style={styles.viewStyle}>
 
         <View style= {{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
@@ -230,7 +270,7 @@ const styles=StyleSheet.create({
     viewStyle:
     {
         padding:20,
-        top: '13%',
+        top: '22%',
     },
 
     txtStyle:
@@ -238,16 +278,13 @@ const styles=StyleSheet.create({
         borderBottomWidth:1,
         borderBottomColor:'black',
         backgroundColor: 'white',
-        marginBottom :10,
         padding: 10,
     },
       
     container :{
         alignItems:'center',
         backgroundColor: '#F5FCFF',
-        marginTop: 10,
         paddingTop: 10,
-        top: 5,
         paddingBottom: 10,
         textAlign: 'center',
         height: 500,
