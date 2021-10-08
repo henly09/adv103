@@ -5,7 +5,6 @@
 
 import * as React from 'react';
 import { View,Text, TouchableNativeFeedback, Image, ImageBackground,StyleSheet,SafeAreaView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import busmanScreen from './busman.js';
@@ -24,6 +23,7 @@ import husocom from '../assets/thumbnails/husocom.png';
 import maritime from '../assets/thumbnails/maritime.png';
 import hotouman from '../assets/thumbnails/hotouman.png';
 import bg from '../assets/school.png';
+
 
 function CourseScreen({ navigation }) {
     return (
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
   
   imagebackground: {
-    height: 755,
+    height: 800,
     width: 500,
     backgroundColor: 'black',
     position: 'absolute',

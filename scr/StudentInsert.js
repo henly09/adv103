@@ -334,6 +334,7 @@ const styles=StyleSheet.create({
         padding: 15,
         marginBottom: 10,
         backgroundColor: 'white',
+        borderRadius: 5
     }
 
 

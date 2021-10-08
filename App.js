@@ -3,11 +3,11 @@
 // FB: fb.com/mhax.ter
 // Gmail: monterahens@gmail.com 
 import * as React from 'react';
-import { View, Text, Button, Image, ImageBackground } from 'react-native';
+import { View, Text, Button, Image, ImageBackground, StyleSheet,TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-//import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ModalDropdown from 'react-native-modal-dropdown';
+import { useNavigation } from '@react-navigation/native';
+import SideMenu from 'react-native-side-menu-updated';
 
 import StudentInsert from './scr/StudentInsert.js';
 import StudentSearch from './scr/StudentSearch.js';
@@ -15,7 +15,6 @@ import StudentDelete from './scr/StudentDelete.js';
 import StudentList from './scr/StudentList.js';
 import StudentCourses from './scr/StudentCourses.js';
 
-import dash from './assets/dash.png';
 import hcdclogo from './assets/hcdclogo.png';
 import school from './assets/school.png';
 import home from './assets/home.png';
@@ -24,11 +23,11 @@ import search from './assets/search.png';
 import deleted from './assets/delete.png';
 import list from './assets/list.png';
 import about from './assets/about.png';
+import download from './assets/download.jpg';
+import schoolgif from './assets/schoolgif.gif';
 
 
 function HomeScreen({ navigation }) {
-
-  const pages = ['Insert', 'Search','Delete', 'StudentList', 'Courses'];
 
   return (
     <View>
@@ -39,46 +38,6 @@ function HomeScreen({ navigation }) {
        height: '100%',
        width: '100%'
      }}>
-    
-    
-      <ModalDropdown 
-        style={{
-        top: 35,
-        width: 100,
-        right: 10,
-        position: 'relative',
-      }}
-        options={['Insert', 'Search','Delete', 'Student List', 'Courses']}
-        animated
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        dropdownStyle={{
-          height: 190,
-          width: 130,
-          marginBottom: 100,
-          marginLeft: 20,
-          marginTop: -80,
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-        }}
-
-        dropdownTextStyle={{
-          fontSize: 20,
-          fontStyle: "italic",
-          fontFamily: 'sans-serif',
-          fontWeight: 'bold'
-        }}
-        onSelect = {(e)=> navigation.navigate(pages[e])}>
-
-         <Image 
-         source= {dash}
-         style={{ 
-         height: 80,
-         width: 80,
-         }}/>
-
-        </ModalDropdown>
-
 
       <Text style={{
         fontSize: 35,
@@ -121,11 +80,9 @@ function HomeScreen({ navigation }) {
          resizeMode: 'center',
          }}/>
 
-     
- 
       <View style={{ 
         flexDirection: 'row', 
-        top: '100%', 
+        top: '115%', 
         justifyContent: 'space-evenly',
         }}>
 
@@ -152,7 +109,7 @@ function HomeScreen({ navigation }) {
 
       <Button
         title={"List"}
-        onPress={() => navigation.navigate('StudentList')}
+        onPress={() => navigation.navigate('List')}
       />
 
       </View>
@@ -161,22 +118,28 @@ function HomeScreen({ navigation }) {
   );
 }
 
-// const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
+          <SideMenu 
+    openMenuOffset={180} 
+    menu={<SideMenuBar/>} 
+    bounceBackOnOverdraw={false}
+    isOpen={false}
+    allowOverlayPressPropagation={true}>
       <Tab.Navigator
     initialRouteName="Home"
       screenOptions={{
         tabBarStyle: { 
           position: 'absolute',
           backgroundColor: '#008ce0',
-          borderTopLeftRadius: 5,
-          borderTopRightRadius: 5,
-          height: 60,
-          width: "100%"
+          borderRadius: 10,
+          height: 65,
+          width: "98%",
+          left: 5,
+          bottom: 5
         },
         tabBarShowLabel: false,
         showElevation: true
@@ -220,7 +183,7 @@ export default function App() {
             ),
         }}/>
 
-<Tab.Screen name="Courses" component={StudentCourses}  options = {{
+<Tab.Screen name="About" component={StudentCourses}  options = {{
             headerShown: false,
             tabBarIcon: ({focused}) => (    
               <View>
@@ -272,7 +235,7 @@ export default function App() {
         }}/>
 
     
-      <Tab.Screen name="StudentList" component={StudentList}  options = {{
+      <Tab.Screen name="List" component={StudentList}  options = {{
             headerShown: false,
             tabBarIcon: ({focused}) => (    
               <View>
@@ -291,8 +254,129 @@ export default function App() {
         }}/>
         
     </Tab.Navigator>
+    </SideMenu>
     </NavigationContainer>
     
   );
 }
 
+function SideMenuBar(){
+  const navigation = useNavigation();
+  return(
+<View>
+<ImageBackground
+                source={schoolgif} 
+                resizeMode='cover' 
+                style={{
+                height: '100%',
+                width: '100%'
+     }}> 
+     <ImageBackground
+                opacity={0.88} 
+                source={download} 
+                resizeMode="cover" 
+                style={{
+                height: '100%',
+                width: '100%'
+     }}>
+
+<Text
+    style={{
+      fontSize: 30,
+      fontFamily: 'sans-serif',
+      fontWeight: 'bold',
+      color:'white',
+      left: 5,
+      top: 100
+    }}
+    > MENU</Text>
+
+  <View style={{
+    top: 100,
+    alignSelf: 'center',
+    width: '100%',
+    left: 15,
+    paddingTop: 10
+  }}>
+
+    <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}> 
+    <Text style={styles.sidemenunav}>HOME</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => navigation.navigate('Insert')}> 
+    <Text style={styles.sidemenunav}>INSERT</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => navigation.navigate('Search')}> 
+    <Text style={styles.sidemenunav}>SEARCH</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => navigation.navigate('Delete')}>
+    <Text style={styles.sidemenunav}>DELETE</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => navigation.navigate('List')}>
+    <Text style={styles.sidemenunav}>DATABASE LIST</Text>
+    </TouchableOpacity>
+
+    <TouchableOpacity onPress={() => navigation.navigate('About')}>
+    <Text style={styles.sidemenunav}>ABOUT</Text>
+    </TouchableOpacity>
+    
+    <TouchableOpacity onPress={() => alert('Page not available!')}>
+    <Text style={styles.sidemenunav}>CONTACT</Text>
+    </TouchableOpacity>
+    
+    <TouchableOpacity onPress={() => alert('Page not available!')}>
+    <Text style={styles.sidemenunav}>SERVICES</Text>
+    </TouchableOpacity>
+
+  </View>
+
+    
+ <View style={{position: 'absolute',top: '74%'}}>        
+         <Image 
+         source= {hcdclogo}
+         style={{ 
+         height: 100,
+         width: 100,
+         left: 30,
+         top:45,
+         resizeMode: 'center',
+         position: 'absolute'
+         }}/>
+
+    <Text style={{
+      fontSize: 10,
+      fontFamily: 'sans-serif',
+      fontWeight:'normal',
+      fontStyle: "italic",
+      top: 150,
+      left: 40,
+      color: 'white',
+      textShadowColor:'#0c0d0e',
+      textShadowOffset:{width: 5, height: 5},
+      textShadowRadius:15,
+      textAlign: 'center',
+    }}>
+      HCDC™ SYSTEM{'\n'}SOLUTIONS
+    </Text>
+</View>
+     </ImageBackground>
+     </ImageBackground>
+   </View>
+);
+}
+
+const styles = StyleSheet.create({
+  
+  sidemenunav: {
+    fontSize: 14,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    color:'white',
+    width: '80%',
+    paddingTop: 20
+  }
+  
+  })

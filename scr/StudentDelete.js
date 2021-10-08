@@ -198,39 +198,12 @@ componentDidMount = async() => {
          height: 95,
          width: 95,
          position: 'absolute',
-         alignSelf:'flex-end',
-         right: 30,
+         alignSelf:'center',
          top: 40,
          resizeMode: 'center',
          }}/>
 
-                <Text style={{
-        fontSize: 50,
-        fontFamily: 'sans-serif',
-        fontWeight: 'bold',
-        fontStyle: "italic",
-        position: 'absolute',
-        top: 45,
-        left: 6.5,
-        color: 'white',
-        textShadowColor:'#0c0d0e',
-        textShadowOffset:{width: 10, height: 10},
-        textShadowRadius:20,
-      }}> STUDENT </Text>         
 
-        <Text style={{
-        fontSize: 30,
-        fontFamily: 'sans-serif',
-        fontWeight: 'bold',
-        fontStyle: "italic",
-        position: 'absolute',
-        top: 100,
-        left: 10,
-        color: 'white',
-        textShadowColor:'#0c0d0e',
-        textShadowOffset:{width: 10, height: 10},
-        textShadowRadius:20,
-      }}> SEARCH SYSTEM </Text>
         <View style={styles.viewStyle}>
 
         <View style= {{flexDirection: 'row', justifyContent: 'space-evenly'}}> 
@@ -250,7 +223,7 @@ componentDidMount = async() => {
 
             <SafeAreaView style={styles.container}>     
                    <FlatList
-                      style={{padding: 10, width: '100%'}}
+                      style={{padding: 10, width: '100%',borderRadius: 5}}
                       data={ this.state.dataSource }
                       onRefresh={() => this.onRefresh()}
                       refreshing={this.state.isFetching}        
@@ -287,7 +260,7 @@ const styles=StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10,
         textAlign: 'center',
-        height: 500,
+        height: 485,
         width: '100%'
         },
 
@@ -314,7 +287,7 @@ const styles=StyleSheet.create({
             backgroundColor:'#630513'
     },
     imagebackground: {
-        height: 755,
+        height: 800,
         width: 500,
         backgroundColor: 'black',
         position: 'absolute',

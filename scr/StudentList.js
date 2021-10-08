@@ -234,7 +234,7 @@ export default class StudentList extends Component {
                       backgroundColor:'#630513',
                    },
                    imagebackground: {
-                    height: 755,
+                    height: 800,
                     width: 500,
                     backgroundColor: 'black',
                     position: 'absolute',
