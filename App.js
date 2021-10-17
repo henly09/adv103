@@ -3,9 +3,11 @@
 // FB: fb.com/mhax.ter
 // Gmail: monterahens@gmail.com 
 import * as React from 'react';
-import { View, Text, Button, Image, ImageBackground, StyleSheet,TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import { View, Text, Button, Image, TextInput, ImageBackground, StyleSheet,ToastAndroid,TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import SideMenu from 'react-native-side-menu-updated';
 
@@ -25,6 +27,12 @@ import list from './assets/list.png';
 import about from './assets/about.png';
 import download from './assets/download.jpg';
 import schoolgif from './assets/schoolgif.gif';
+import schoolloop from './assets/schoolloop.gif';
+
+import fb from './assets/fb.png';
+import google from './assets/google.png';
+import insta from './assets/insta.png';
+import twitter from './assets/twitter.png';
 
 
 function HomeScreen({ navigation }) {
@@ -93,7 +101,7 @@ function HomeScreen({ navigation }) {
 
       <Button
         title={"Courses"}
-        onPress={() => navigation.navigate('Courses')}
+        onPress={() => navigation.navigate('About')}
       />
 
       <Button
@@ -119,11 +127,11 @@ function HomeScreen({ navigation }) {
 }
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-export default function App() {
+function App() {
   return (
-    <NavigationContainer>
-          <SideMenu 
+  <SideMenu 
     openMenuOffset={180} 
     menu={<SideMenuBar/>} 
     bounceBackOnOverdraw={false}
@@ -255,7 +263,6 @@ export default function App() {
         
     </Tab.Navigator>
     </SideMenu>
-    </NavigationContainer>
     
   );
 }
@@ -368,6 +375,102 @@ function SideMenuBar(){
 );
 }
 
+export default function Main() {
+  return(
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown:false}}>
+          <Stack.Screen name="Home" component={LoginScreen}/>
+          <Stack.Screen name="HomeSecond" component={App}/>
+        </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+function LoginScreen({navigation}) {
+  
+  const user = 'henly09';
+  const pass = '09108076145145';
+  
+  const [loginuser, setLoginuser] = useState('');
+  const [loginpass, setLoginpass] = useState('');
+
+  onLogin = async() => {
+    if (user == loginuser && pass == loginpass){
+      ToastAndroid.show("Login Successfully!",ToastAndroid.SHORT);
+      console.log("user: "+loginuser +" "+"pass: "+loginpass);
+      navigation.navigate("HomeSecond");
+    }
+    else{
+      ToastAndroid.show("Username or Password is Invalid!",ToastAndroid.SHORT);
+      console.log("user: "+loginuser +" "+"pass: "+loginpass);
+    }
+  }
+    return (
+      <View style={{position: 'absolute', height: '100%',width: '100%'}}>  
+          <ImageBackground
+                  source={schoolloop} 
+                  resizeMode='cover' 
+                  style={{
+                  height: '100%',
+                  width: '100%',
+                  position: 'absolute',
+       }}/> 
+      
+        <Text style={styles.bakerytext}> HOLY CROSS OF {"\n"} DAVAO COLLEGE </Text>
+  
+          <Text style={styles.sysdat}> System Database for Student Management™ </Text>
+  
+          <Image 
+           source= {hcdclogo}
+           style={styles.logo}/>
+  
+           <View style={{alignSelf: 'center', justifyContent: 'center', top: 400,justifyContent: 'space-evenly' }}>
+  
+           <TextInput
+                      placeholder={"Username:"}
+                      placeholderTextColor={"white"}
+                      style={styles.txtStyle}
+                      onChangeText={loginuser=>setLoginuser(loginuser)}
+                  />
+  
+            <TextInput
+                      placeholder={"Password:"}
+                      placeholderTextColor={"white"}
+                      style={styles.txtStyle}
+                      secureTextEntry={true}
+                      onChangeText={loginpass=>setLoginpass(loginpass)}
+                  />
+  
+           </View>
+  
+           <View style={{alignSelf: 'center', top: 420}}> 
+        
+           <TouchableOpacity onPress={onLogin}>
+             <Text style={styles.loginbutton}>LOGIN</Text>
+           </TouchableOpacity>
+           </View> 
+  
+           <View style={{ 
+          flexDirection: 'row', 
+          top: '110%', 
+          justifyContent: 'space-evenly',
+          }}>
+  
+          <Image source= {fb} style={styles.loginwith}/>
+  
+          <Image source= {google} style={styles.loginwith}/>
+  
+          <Image source= {insta} style={styles.loginwith}/>
+  
+          <Image source= {twitter} style={styles.loginwith}/>
+  
+          </View>
+  
+     
+        </View>
+    );
+  }
+
 const styles = StyleSheet.create({
   
   sidemenunav: {
@@ -377,6 +480,79 @@ const styles = StyleSheet.create({
     color:'white',
     width: '80%',
     paddingTop: 20
+  },
+
+  logo: { 
+    height: 180,
+    width: 180,
+    position: 'absolute',
+    alignSelf:'center',
+    top: 50,
+    resizeMode: 'center',
+    },
+
+  sysdat: {
+    fontSize: 20,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    fontStyle: "italic",
+    position: 'absolute',
+    alignSelf:'center',
+    top: 325,
+    color: 'white',
+    textShadowColor:'#0c0d0e',
+    textShadowOffset:{width: 5, height: 5},
+    textShadowRadius:15,
+    textAlign: 'center'
+  },
+
+  bakerytext: {
+    fontSize: 35,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    fontStyle: "italic",
+    position: 'absolute',
+    alignSelf:'center',
+    top: 235,
+    color: 'white',
+    textShadowColor:'#0c0d0e',
+    textShadowOffset:{width: 5, height: 5},
+    textShadowRadius:15,
+    textAlign: 'center',
+  },
+  
+  txtStyle: {
+    fontSize: 14,
+    backgroundColor: '#44a8f6',
+    height: 45,
+    padding: 10,
+    width: 280,
+    marginBottom: 10,
+    borderBottomColor: 'white',
+    borderRadius: 10,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    color: 'white'
+  },
+
+  loginbutton: {
+    fontSize: 14,
+    backgroundColor: '#970f12',
+    height: 45,
+    padding: 10,
+    width: 280,
+    marginBottom: 10,
+    borderBottomColor: 'white',
+    borderRadius: 20,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white'
+  },
+
+  loginwith: {
+    height: 55,
+    width: 55
   }
   
   })
