@@ -10,6 +10,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import SideMenu from 'react-native-side-menu-updated';
+import AppIntroSlider from 'react-native-app-intro-slider';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import StudentInsert from './scr/StudentInsert.js';
 import StudentSearch from './scr/StudentSearch.js';
@@ -380,6 +382,7 @@ export default function Main() {
     <NavigationContainer>
         <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown:false}}>
           <Stack.Screen name="Home" component={LoginScreen}/>
+          <Stack.Screen name="HomeHalf" component={Slider}/>
           <Stack.Screen name="HomeSecond" component={App}/>
         </Stack.Navigator>
     </NavigationContainer>
@@ -398,7 +401,7 @@ function LoginScreen({navigation}) {
     if (user == loginuser && pass == loginpass){
       ToastAndroid.show("Login Successfully!",ToastAndroid.SHORT);
       console.log("user: "+loginuser +" "+"pass: "+loginpass);
-      navigation.navigate("HomeSecond");
+      navigation.navigate("HomeHalf");
     }
     else{
       ToastAndroid.show("Username or Password is Invalid!",ToastAndroid.SHORT);
@@ -471,6 +474,83 @@ function LoginScreen({navigation}) {
     );
   }
 
+function Slider({ navigation }) {
+
+    const slides = [
+     {
+       key: 1,
+       title: 'HCDC Vision-Mission Statement and Core Values',
+       text: 'The Holy Cross of Davao College envisions a fully vibrant community of believers and Christ-centered evangelizers, educated in the faith, animated by the passion for truth, and engaged in building a more humane world.',
+       image: require('./assets/hcdcgif.gif'),
+       backgroundColor: '#fcc464'
+     },
+     {
+       key: 2,
+       title: 'HCDC Vision-Mission Statement and Core Values',
+       text: 'As members of this Filipino archdiocesan educational institution, we commit ourselves to cultivate high quality Catholic education for all, attentive to the needs of the less fortunate; nurture a culture of excellence and holiness; and provide a human and Christian learning environment for the integral liberating formation of persons who will become effective agents of social transformation.',
+       image: require('./assets/hcdcgif2.gif'),
+       backgroundColor: '#ecd7b5'
+     },
+     {
+       key: 3,
+       title: 'HCDC Vision-Mission Statement and Core Values',
+       text: 'From faith to truth, we uphold the values of servant leadership, dialogue, justice, peace, and integrity of creation, with wisdom as the underlying principle.',
+       image: require('./assets/hcdcgif3.gif'),
+       backgroundColor: '#dc8e94'
+     }
+   ];
+  
+   onCall = async() => {
+     navigation.navigate('HomeSecond');
+   }
+  
+    _renderItem = ({ item }) => {
+     return (
+       <View style={styles.slider}>
+         <Text style={styles.title}>{item.title}</Text>
+               <Image style={styles.image} source={item.image} />
+         <Text style={styles.text}>{item.text}</Text>
+       </View>
+     );
+   }
+  
+   _renderNextButton = () => {
+     return (
+       <View style={styles.buttonCircle}>
+         <Icon
+           name="arrow-forward-outline"
+           color="rgba(255, 255, 255, .9)"
+           size={24}
+         />
+       </View>
+     );
+   };
+   _renderDoneButton = () => {
+     return (
+       <View style={styles.buttonCircle}>
+         <Icon
+           name="md-checkmark"
+           color="rgba(255, 255, 255, .9)"
+           size={24}
+         />
+       </View>
+     );
+   };
+  
+   return (
+     <AppIntroSlider
+       data={slides}
+       renderItem={_renderItem}
+       renderDoneButton={_renderDoneButton}
+       renderNextButton={_renderNextButton}
+       keyExtractor={(item, index) => index.toString()}
+       dotClickEnabled={true}
+       onDone={onCall}
+     />
+   );
+  }
+  
+
 const styles = StyleSheet.create({
   
   sidemenunav: {
@@ -480,6 +560,53 @@ const styles = StyleSheet.create({
     color:'white',
     width: '80%',
     paddingTop: 20
+  },
+
+  
+  title:{
+    alignSelf: 'center',
+    top:140,
+    fontSize: 20,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    fontStyle: "italic",
+    textAlign: 'center',
+    color: 'white'
+  },
+
+  slider: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#2a83ca',
+    position: 'absolute'
+  },
+
+  text:{
+    alignSelf: 'center',
+    top: 180,
+    fontSize: 20,
+    fontFamily: 'sans-serif',
+    fontWeight: 'bold',
+    fontStyle: "italic",
+    textAlign: 'center',
+    color: 'white'
+  },
+
+  image: {
+   resizeMode: 'cover',
+   height: 250,
+   width: 250,
+   alignSelf: 'center',
+   top: '20%',
+  },
+
+  buttonCircle: {
+    width: 40,
+    height: 40,
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   logo: { 
@@ -537,7 +664,7 @@ const styles = StyleSheet.create({
 
   loginbutton: {
     fontSize: 14,
-    backgroundColor: '#970f12',
+    backgroundColor: '#3c7496',
     height: 45,
     padding: 10,
     width: 280,
