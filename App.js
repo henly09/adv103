@@ -550,7 +550,6 @@ function Slider({ navigation }) {
    );
   }
   
-
 const styles = StyleSheet.create({
   
   sidemenunav: {
