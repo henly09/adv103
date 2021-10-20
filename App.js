@@ -479,24 +479,21 @@ function Slider({ navigation }) {
     const slides = [
      {
        key: 1,
-       title: 'HCDC Vision-Mission Statement and Core Values',
+       title: 'HCDC Vision-Mission Statement \n and Core Values',
        text: 'The Holy Cross of Davao College envisions a fully vibrant community of believers and Christ-centered evangelizers, educated in the faith, animated by the passion for truth, and engaged in building a more humane world.',
        image: require('./assets/hcdcgif.gif'),
-       backgroundColor: '#fcc464'
      },
      {
        key: 2,
-       title: 'HCDC Vision-Mission Statement and Core Values',
-       text: 'As members of this Filipino archdiocesan educational institution, we commit ourselves to cultivate high quality Catholic education for all, attentive to the needs of the less fortunate; nurture a culture of excellence and holiness; and provide a human and Christian learning environment for the integral liberating formation of persons who will become effective agents of social transformation.',
+       title: 'HCDC Vision-Mission Statement \n and Core Values',
+       text: 'As members of this Filipino archdiocesan educational institution, we commit ourselves to cultivate high quality Catholic education for all, attentive to the needs of the less fortunate.',
        image: require('./assets/hcdcgif2.gif'),
-       backgroundColor: '#ecd7b5'
      },
      {
        key: 3,
-       title: 'HCDC Vision-Mission Statement and Core Values',
-       text: 'From faith to truth, we uphold the values of servant leadership, dialogue, justice, peace, and integrity of creation, with wisdom as the underlying principle.',
+       title: 'HCDC Vision-Mission Statement \n and Core Values',
+       text: 'Nurture a culture of excellence and holiness; and provide a human and Christian learning environment for the integral liberating formation of persons who will become effective agents of social transformation. From faith to truth, we uphold the values of servant leadership, dialogue, justice, peace, and integrity of creation, with wisdom as the underlying principle.',
        image: require('./assets/hcdcgif3.gif'),
-       backgroundColor: '#dc8e94'
      }
    ];
   
@@ -505,8 +502,17 @@ function Slider({ navigation }) {
    }
   
     _renderItem = ({ item }) => {
+
+    const bg = [styles.slider,styles.slider1,styles.slider2];
+
+    var e;
+       
+    if ( item.text == 'The Holy Cross of Davao College envisions a fully vibrant community of believers and Christ-centered evangelizers, educated in the faith, animated by the passion for truth, and engaged in building a more humane world.'){e=0;}
+    if ( item.text == 'As members of this Filipino archdiocesan educational institution, we commit ourselves to cultivate high quality Catholic education for all, attentive to the needs of the less fortunate.'){e=1;}
+    if ( item.text == 'Nurture a culture of excellence and holiness; and provide a human and Christian learning environment for the integral liberating formation of persons who will become effective agents of social transformation. From faith to truth, we uphold the values of servant leadership, dialogue, justice, peace, and integrity of creation, with wisdom as the underlying principle.'){e=2;}
+
      return (
-       <View style={styles.slider}>
+       <View style={bg[e]}>
          <Text style={styles.title}>{item.title}</Text>
                <Image style={styles.image} source={item.image} />
          <Text style={styles.text}>{item.text}</Text>
@@ -576,13 +582,30 @@ const styles = StyleSheet.create({
   slider: {
     height: '100%',
     width: '100%',
-    backgroundColor: '#2a83ca',
+    backgroundColor: '#9ca497',
+    position: 'absolute'
+  },
+
+  slider1: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#b4946e',
+    position: 'absolute'
+  },
+
+
+  slider2: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#7cc4d4',
     position: 'absolute'
   },
 
   text:{
     alignSelf: 'center',
     top: 180,
+    marginLeft:10,
+    marginRight:10,
     fontSize: 20,
     fontFamily: 'sans-serif',
     fontWeight: 'bold',
