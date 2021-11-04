@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import school from '../assets/school.png';
-import { Image,Button,StyleSheet, FlatList, Text, View, ActivityIndicator, TouchableOpacity, ImageBackground} from 'react-native';
+import { Image,StyleSheet, FlatList, Text, View, ActivityIndicator, TouchableOpacity, ImageBackground} from 'react-native';
 import hcdclogo from '../assets/hcdclogo.png';
 // Ownded and Created by : Montera, John Henly A.
 // FB: fb.com/mhax.ter
